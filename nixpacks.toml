@@ -2,7 +2,7 @@
 nixPkgs = ["php82", "php82Packages.composer", "nodejs", "php82Extensions.gd", "php82Extensions.bcmath", "php82Extensions.pdo_mysql"]
 
 [phases.install]
-cmds = ["composer install --no-interaction --optimize-autoloader --no-dev --ignore-platform-req=ext-gd || composer install --no-interaction --optimize-autoloader --no-dev", "npm install"]
+cmds = ["composer install --no-interaction --optimize-autoloader --no-dev --ignore-platform-reqs", "npm install"]
 
 [phases.build]
 cmds = ["npm run build", "php artisan storage:link", "php artisan migrate --force"]
