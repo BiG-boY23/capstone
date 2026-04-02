@@ -1,6 +1,6 @@
-FROM php:8.2-apache
+FROM php:8.2-cli
 
-# Install platform dependencies
+# Install system dependencies
 RUN apt-get update && apt-get install -y \
     libpng-dev \
     libjpeg-dev \
@@ -11,20 +11,6 @@ RUN apt-get update && apt-get install -y \
     git \
     && docker-php-ext-configure gd --with-freetype --with-jpeg \
     && docker-php-ext-install gd pdo pdo_mysql zip
-
-# Disable event MPM and Enable prefork MPM to fix AH00534
-RUN a2dismod mpm_event && a2enmod mpm_prefork
-
-# Enable Apache mod_rewrite
-RUN a2enmod rewrite
-
-# Setup Document Root for Laravel
-ENV APACHE_DOCUMENT_ROOT /var/www/html/public
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/sites-available/*.conf
-RUN sed -ri -e 's!/var/www/html!${APACHE_DOCUMENT_ROOT}!g' /etc/apache2/apache2.conf /etc/apache2/conf-available/*.conf
-
-# Configure Apache to use Railway's $PORT
-RUN sed -i "s/80/\${PORT}/g" /etc/apache2/sites-available/000-default.conf /etc/apache2/ports.conf
 
 # Copy application files
 COPY . /var/www/html/
@@ -37,7 +23,8 @@ RUN composer install --no-interaction --optimize-autoloader --no-dev --ignore-pl
 # Fix permissions
 RUN chown -R www-data:www-data /var/www/html/storage /var/www/html/bootstrap/cache
 
-# Allow Apache to start even if it thinks it's already running
-RUN rm -f /var/run/apache2/apache2.pid
+# Port is provided by Railway
+EXPOSE 8000
 
-CMD ["apache2-foreground"]
+# Start server using Artisan serve
+CMD php artisan serve --host=0.0.0.0 --port=$PORT
