@@ -15,11 +15,34 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // Add Admin account
+        \App\Models\User::updateOrCreate(
+            ['username' => 'admin'],
+            [
+                'name' => 'Administrator',
+                'password' => \Hash::make('password'),
+                'role' => 'admin',
+            ]
+        );
 
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        // Add Office account
+        \App\Models\User::updateOrCreate(
+            ['username' => 'office'],
+            [
+                'name' => 'Office Staff',
+                'password' => \Hash::make('password'),
+                'role' => 'office',
+            ]
+        );
+
+        // Add Guard account
+        \App\Models\User::updateOrCreate(
+            ['username' => 'guard'],
+            [
+                'name' => 'Campus Guard',
+                'password' => \Hash::make('password'),
+                'role' => 'guard',
+            ]
+        );
     }
 }
