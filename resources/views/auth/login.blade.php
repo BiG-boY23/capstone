@@ -1,4 +1,4 @@
-<!-- final sync-orange-final -->
+<!-- final force-orange-sync -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -82,16 +82,6 @@
             margin-top: 0.5rem;
         }
         .btn-submit:hover { background: #5a1515; }
-        .error-msg {
-            color: #dc2626;
-            font-size: 0.875rem;
-            margin-bottom: 1rem;
-            text-align: center;
-            background: #fef2f2;
-            padding: 0.75rem;
-            border-radius: 6px;
-            border: 1px solid #fee2e2;
-        }
         .login-footer {
             margin-top: 1rem;
             text-align: center;
