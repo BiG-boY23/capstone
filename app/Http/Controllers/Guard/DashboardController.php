@@ -339,7 +339,10 @@ class DashboardController extends Controller
         }
 
         // Peak Hours Summary
-        $peakHoursRaw = VehicleLog::select(DB::raw('strftime("%H", timestamp) as hr'), DB::raw('count(*) as count'))
+        $driver = DB::getDriverName();
+        $hourExpr = $driver === 'sqlite' ? 'strftime("%H", timestamp)' : 'DATE_FORMAT(timestamp, "%H")';
+
+        $peakHoursRaw = VehicleLog::select(DB::raw("$hourExpr as hr"), DB::raw('count(*) as count'))
             ->whereBetween('timestamp', [$startTime, $endTime])
             ->groupBy('hr')
             ->orderByDesc('count')
@@ -397,7 +400,10 @@ class DashboardController extends Controller
         $returnRate = $totalVisitorsCount > 0 ? round(($returningCount / $totalVisitorsCount) * 100, 1) : 0;
 
         $daysOfWeek = ['Sundays', 'Mondays', 'Tuesdays', 'Wednesdays', 'Thursdays', 'Fridays', 'Saturdays'];
-        $busiestDayRaw = Visitor::select(DB::raw('strftime("%w", time_in) as day_offset'), DB::raw('count(*) as count'))
+        $driver = DB::getDriverName();
+        $dayExpr = $driver === 'sqlite' ? 'strftime("%w", time_in)' : 'DATE_FORMAT(time_in, "%w")';
+
+        $busiestDayRaw = Visitor::select(DB::raw("$dayExpr as day_offset"), DB::raw('count(*) as count'))
             ->groupBy('day_offset')
             ->orderByDesc('count')
             ->first();
@@ -437,7 +443,10 @@ class DashboardController extends Controller
 
         // 3. Peak Arrival Hours (All-time or range?)
         // Let's do all-time for better "heat" logic
-        $peakHoursRaw = Visitor::select(DB::raw('strftime("%H", time_in) as hr'), DB::raw('count(*) as count'))
+        $driver = DB::getDriverName();
+        $hourExpr = $driver === 'sqlite' ? 'strftime("%H", time_in)' : 'DATE_FORMAT(time_in, "%H")';
+
+        $peakHoursRaw = Visitor::select(DB::raw("$hourExpr as hr"), DB::raw('count(*) as count'))
             ->groupBy('hr')
             ->orderBy('hr')
             ->get();

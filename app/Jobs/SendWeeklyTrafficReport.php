@@ -29,7 +29,10 @@ class SendWeeklyTrafficReport implements ShouldQueue
         $totalEntries = VehicleLog::where('type', 'entry')->whereBetween('timestamp', [$startOfWeek, $endOfWeek])->count();
         $totalExits = VehicleLog::where('type', 'exit')->whereBetween('timestamp', [$startOfWeek, $endOfWeek])->count();
         
-        $peakHourData = VehicleLog::select(DB::raw('strftime("%H", timestamp) as hour, count(*) as count'))
+        $driver = DB::getDriverName();
+        $hourExpr = $driver === 'sqlite' ? 'strftime("%H", timestamp)' : 'DATE_FORMAT(timestamp, "%H")';
+
+        $peakHourData = VehicleLog::select(DB::raw("$hourExpr as hour, count(*) as count"))
             ->whereBetween('timestamp', [$startOfWeek, $endOfWeek])
             ->groupBy('hour')
             ->orderByDesc('count')
