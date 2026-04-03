@@ -33,17 +33,20 @@
         .login-header {
             text-align: center;
             margin-bottom: 2rem;
+            background: white !important;
+            padding: 1rem;
+            border-radius: 8px;
         }
         .brand {
-            font-size: 1.75rem;
-            font-weight: 700;
+            font-size: 2rem;
+            font-weight: 800;
             margin-bottom: 0.5rem;
             color: #741b1b;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 5px;
+            gap: 2px;
         }
         .brand-logo {
             width: 80px;
@@ -135,13 +138,6 @@
             </div>
             <button type="submit" class="btn-submit">Sign In</button>
         </form>
-
-        <div style="margin-top: 1.5rem; font-size: 0.8rem; color: #64748b; text-align: center;">
-            <p>Demo Credentials:</p>
-            <p>admin / password</p>
-            <p>office / password</p>
-            <p>guard / password</p>
-        </div>
     </div>
 
     <div class="login-footer">
