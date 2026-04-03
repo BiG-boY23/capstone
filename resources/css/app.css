@@ -1,9 +1,56 @@
+@import "tailwindcss";
+
+@source "../../resources/views/**/*.blade.php";
+@source "../../resources/js/**/*.js";
+@source "../../app/View/Components/**/*.php";
+
 @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
 @import './modals.css';
 
 /* ══════════════════════════════════════════════
    DESIGN TOKENS — LIGHT MODE (Default)
 ══════════════════════════════════════════════ */
+@theme {
+    /* Brand Colors */
+    --color-sidebar-bg: #741b1b;
+    --color-evsu-gold: #fdb913;
+    --color-primary: #f59e0b;
+    --color-primary-hover: #d97706;
+
+    /* Backgrounds */
+    --color-app-bg: #f8fafc;
+    --color-card-bg: #ffffff;
+    --color-input-bg: #f8fafc;
+    --color-header-bg: #ffffff;
+
+    /* Text */
+    --color-text-main: #1e293b;
+    --color-text-muted: #64748b;
+    --color-text-sidebar: #ffffff;
+
+    /* Status Colors */
+    --color-success: #16a34a;
+    --color-warning: #f59e0b;
+    --color-danger: #dc2626;
+
+    /* Borders & Shadows */
+    --color-border: #e2e8f0;
+    --shadow-card: 0 4px 6px -1px rgba(0, 0, 0, 0.07), 0 2px 4px -1px rgba(0, 0, 0, 0.04);
+    --shadow-float: 0 15px 45px rgba(0, 0, 0, 0.2);
+
+    /* Sidebar Gradient Active State */
+    --sidebar-active-gradient: linear-gradient(135deg, rgba(253, 185, 19, 0.3) 0%, rgba(253, 185, 19, 0.1) 100%);
+
+    /* Radii */
+    --radius: 14px;
+    --radius-sm: 8px;
+
+    /* Glassmorphism Variants */
+    --glass-bg: rgba(255, 255, 255, 0.72);
+    --glass-border: rgba(255, 255, 255, 0.45);
+    --glass-blur: blur(16px);
+}
+
 :root {
     /* Brand Colors */
     --bg-sidebar: #741b1b;
