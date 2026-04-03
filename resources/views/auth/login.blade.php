@@ -1,3 +1,4 @@
+<!-- final sync-orange-final -->
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -126,19 +127,6 @@
                         icon: 'success',
                         title: 'Success!',
                         text: "{{ session('success') }}",
-                        confirmButtonColor: '#741b1b'
-                    });
-                });
-            </script>
-        @endif
-
-        @if($errors->any())
-            <script>
-                document.addEventListener('DOMContentLoaded', function() {
-                    Swal.fire({
-                        icon: 'error',
-                        title: 'Login Failed',
-                        text: "{{ $errors->first() }}",
                         confirmButtonColor: '#741b1b'
                     });
                 });
