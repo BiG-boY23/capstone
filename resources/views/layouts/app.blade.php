@@ -29,7 +29,7 @@
         }
         body { background-color: var(--bg-app); color: var(--text-main); }
         .sidebar { 
-            background-color: #450a0a !important; 
+            background-color: #741b1b !important; 
             overflow-y: scroll !important; 
             display: flex !important;
             flex-direction: column !important;
@@ -49,7 +49,7 @@
         .sidebar::-webkit-scrollbar-thumb {
             background: #fdb913 !important; /* GOLD - High Contrast */
             border-radius: 20px !important;
-            border: 3px solid #450a0a !important; /* Matches sidebar bg */
+            border: 3px solid #741b1b !important; /* Matches sidebar bg */
         }
         [data-theme='dark'] .glass { background: rgba(30, 41, 59, 0.8) !important; border-color: #334155 !important; }
         [data-theme='dark'] .modal-container { background-color: #1e293b !important; color: #f8fafc !important; }
@@ -97,7 +97,7 @@
             <div class="brand-logo-container">
                 <img src="{{ asset('images/evsu-logo.png') }}" alt="EVSU Logo">
             </div>
-            <div class="brand-text">Smart<span style="color:white;">Gate</span></div>
+            <div class="brand-text">Smart<span style="color:#fdb913;">Gate</span></div>
         </div>
 
         <ul class="nav-links">
