@@ -1,11 +1,10 @@
 @import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+@import './modals.css';
 
 @source "../../resources/views/**/*.blade.php";
 @source "../../resources/js/**/*.js";
 @source "../../app/View/Components/**/*.php";
-
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
-@import './modals.css';
 
 /* ══════════════════════════════════════════════
    DESIGN TOKENS — LIGHT MODE (Default)
